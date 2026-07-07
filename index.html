@@ -5052,9 +5052,11 @@ document.addEventListener("DOMContentLoaded", () => {
 })();
 </script>
 
-<script src="https://alcdn.msauth.net/browser
+<script src="httpsth.net/browser/2.38.3/js/msal-browser.min.js
 
 <script>
+console.log("MSAL loaded:", typeof msal);
+
 const msalConfig = {
     auth: {
         clientId: "553e6f53-df92-43e2-934c-16f28c1faae0",
@@ -5075,24 +5077,13 @@ const msalInstance = new msal.PublicClientApplication(msalConfig);
 async function loginMicrosoft() {
     try {
         const result = await msalInstance.loginPopup(loginRequest);
-
-        alert(
-            "Signed in as: " +
-            result.account.username
-        );
-
-        console.log(result);
+        alert("Signed in as: " + result.account.username);
     } catch (err) {
         console.error(err);
         alert("Microsoft login failed");
     }
 }
 </script>
-
-<button onclick="loginMicrosoft()">
-    Microsoft Login Test
-</button>
-
 
 </body>
 </html>
