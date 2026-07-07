@@ -634,9 +634,7 @@
       <h2>Customer Support Form</h2>
 
 <div style="margin-bottom:20px;">
-  <button class="blue-button" onclick="loginMicrosoft()">
-    Microsoft Login Test
-  </button>
+  <button onclick="loginMicrosoft()">Sign in with Microsoft</button>
 </div>
 
       <!-- ========================= -->
@@ -5050,40 +5048,30 @@ document.addEventListener("DOMContentLoaded", () => {
 
   render();
 })();
-</script>
-
-<script src="https://alcdn.msauth.net/browser/2.38.3/js.min.js>
-
+<script src="https://alcdn.msauth.net/browser/2.browser.min.js"></script>
 <script>
-console.log("MSAL loaded:", typeof msal);
-
 const msalConfig = {
     auth: {
         clientId: "553e6f53-df92-43e2-934c-16f28c1faae0",
         authority: "https://login.microsoftonline.com/875a4bfb-1df9-4948-bebe-d06f1be4b2b6",
-        redirectUri: "https://selena3780.github.io"
+        redirectUri: "https://selena3780.github.io/Customer-Support-FormV3/"
     }
-};
-
-const loginRequest = {
-    scopes: [
-        "User.Read",
-        "Sites.ReadWrite.All"
-    ]
 };
 
 const msalInstance = new msal.PublicClientApplication(msalConfig);
 
 async function loginMicrosoft() {
     try {
-        const result = await msalInstance.loginPopup(loginRequest);
-        alert("Signed in as: " + result.account.username);
-    } catch (err) {
-        console.error(err);
-        alert("Microsoft login failed");
+        const loginResponse = await msalInstance.loginPopup({
+            scopes: ["User.Read"]
+        });
+        alert("Logged in as: " + loginResponse.account.username);
+        // add your next steps here, e.g. showing the support form
+    } catch (error) {
+        console.error("Login failed:", error);
+        alert("Login failed. Check the console for details.");
     }
 }
 </script>
-
 </body>
 </html>
