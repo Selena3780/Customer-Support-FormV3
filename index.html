@@ -5046,5 +5046,47 @@ document.addEventListener("DOMContentLoaded", () => {
 })();
 </script>
 
+<script src="https://alcdn.mwser/2.38.3/js/msal-browser.min.js
+
+<script>
+const msalConfig = {
+    auth: {
+        clientId: "553e6f53-df92-43e2-934c-16f28c1faae0",
+        authority: "https://login.microsoftonline.com/875a4bfb-1df9-4948-bebe-d06f1be4b2b6",
+        redirectUri: "https://selena3780.github.io"
+    }
+};
+
+const loginRequest = {
+    scopes: [
+        "User.Read",
+        "Sites.ReadWrite.All"
+    ]
+};
+
+const msalInstance = new msal.PublicClientApplication(msalConfig);
+
+async function loginMicrosoft() {
+    try {
+        const result = await msalInstance.loginPopup(loginRequest);
+
+        alert(
+            "Signed in as: " +
+            result.account.username
+        );
+
+        console.log(result);
+    } catch (err) {
+        console.error(err);
+        alert("Microsoft login failed");
+    }
+}
+</script>
+
+<button onclick="loginMicrosoft()">
+    Microsoft Login Test
+</button>
+
+
 </body>
 </html>
